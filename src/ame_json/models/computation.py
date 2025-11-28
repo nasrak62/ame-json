@@ -1,37 +1,26 @@
-from collections.abc import Coroutine
-import inspect
 from pydantic import SerializationInfo
 from pydantic_core import core_schema
 
-from typing import Any, Callable, cast
+from typing import Any, Callable
 
 
-type SyncComputation[R] = Callable[..., R]
-type AsyncComputation[R] = Callable[..., Coroutine[Any, Any, R]]
-type ComputationFunction[R] = SyncComputation[R] | AsyncComputation[R]
+type ComputationFunction[R] = Callable[..., R]
 
 
 class Computation[R]:
     def __init__(self, func: ComputationFunction[R], func_kwargs: dict | None = None):
         self.func = func
         self.func_kwargs = func_kwargs or {}
-        self.is_async = inspect.iscoroutinefunction(func)
 
     def __repr__(self):
-        return f"<Computation func={self.func.__name__}, async={self.is_async}>"
+        return f"<Computation func={self.func.__name__}>"
 
     def __pydantic_serializer__(
         self,
         _instance: Any,  # Pydantic passes the instance (self) here
         _info: SerializationInfo,
     ) -> R:
-        if self.is_async:
-            raise ValueError(
-                "Cannot serialize an async Computation synchronously "
-                "via model_dump(). Use a custom async context or an async serializer."
-            )
-
-        return self.run_sync()
+        return self.run()
 
     @classmethod
     def __get_pydantic_core_schema__(
@@ -57,20 +46,7 @@ class Computation[R]:
         )
 
     def _serialize(self):
-        return self.run_sync()
+        return self.run()
 
-    def run_sync(self) -> R:
-        if self.is_async:
-            raise Exception("Sync running async")
-
-        self.func = cast(SyncComputation[R], self.func)
-
+    def run(self) -> R:
         return self.func(**self.func_kwargs)
-
-    async def run(self) -> R:
-        if not self.is_async:
-            raise Exception("Async running sync")
-
-        self.func = cast(AsyncComputation[R], self.func)
-
-        return await self.func(**self.func_kwargs)

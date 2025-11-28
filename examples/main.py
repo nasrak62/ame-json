@@ -4,8 +4,8 @@ import time
 
 from pydantic import BaseModel
 
-from src.models.progressive_schema import ProgressiveSchema
-from src.models.computation import Computation
+from src.ame_json.models.progressive_schema import ProgressiveSchema
+from src.ame_json.models.computation import Computation
 
 PORT = 8000
 

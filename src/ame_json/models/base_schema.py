@@ -1,4 +1,4 @@
-from collections.abc import Generator
+from collections.abc import AsyncGenerator, Generator
 from abc import ABC, abstractmethod
 from typing import Any
 from pydantic import BaseModel
@@ -9,14 +9,16 @@ class AbstractBaseProgressiveJSONStreamer[T: BaseProgressiveSchema](ABC):
         pass
 
     @abstractmethod
-    def stream_sync(self) -> Generator[bytes, Any, None]:
-        pass
+    def stream(self) -> Generator[bytes, Any, None]:
+        raise NotImplementedError
+
+        yield b""
 
 
 class BaseProgressiveJSONStreamer[T: BaseProgressiveSchema](
     AbstractBaseProgressiveJSONStreamer[T]
 ):
-    def stream_sync(self) -> Generator[bytes, Any, None]:
+    def stream(self) -> Generator[bytes, Any, None]:
         yield b""
 
 

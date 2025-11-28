@@ -1,9 +1,8 @@
+import asyncio
 import json
-import time
 
-
-from src.ame_json.models.computation import Computation
-from src.ame_json.models.progressive_schema import ProgressiveSchema
+from src.ame_json.models.async_computation import AsyncComputation
+from src.ame_json.models.progressive_schema import AsyncProgressiveSchema
 from pydantic import BaseModel
 
 
@@ -13,10 +12,10 @@ class Products(BaseModel):
 
 
 # Mock data retrieval functions (now all synchronous, simulating Django)
-def get_user_products_sync() -> list[Products]:
+async def get_user_products_async() -> list[Products]:
     """Simulates a slow, sync database call."""
 
-    time.sleep(2)  # Simulate 2 seconds of work
+    await asyncio.sleep(0.02)  # Simulate 2 seconds of work
     return list(
         map(
             lambda x: Products(name=x, price=0.0),
@@ -25,10 +24,10 @@ def get_user_products_sync() -> list[Products]:
     )
 
 
-def calculate_loyalty_score_sync() -> int:
+async def calculate_loyalty_score_async() -> int:
     """Simulates a slower, sync external API call or heavy computation."""
 
-    time.sleep(1)  # Simulate 1 second of work
+    await asyncio.sleep(0.01)  # Simulate 1 second of work
     return 95
 
 
@@ -42,7 +41,7 @@ class UserAddress(BaseModel):
     city: str
 
 
-class BaseUserProfile(ProgressiveSchema):
+class BaseUserProfile(AsyncProgressiveSchema):
     user_id: int
     username: str
     email: str
@@ -53,11 +52,11 @@ class UserWithAddress(BaseUserProfile):
 
 
 class UserWithLoyaltyScore(UserWithAddress):
-    loyalty_score: Computation[int]
+    loyalty_score: AsyncComputation[int]
 
 
 class UserProfile(UserWithLoyaltyScore):
-    products: Computation[list[Products]]
+    products: AsyncComputation[list[Products]]
 
 
 def assert_as_json(value: bytes, expected: dict):
@@ -66,7 +65,7 @@ def assert_as_json(value: bytes, expected: dict):
     assert dict_value == expected
 
 
-def assert_end_of_stream(generator):
-    value = next(generator)
+async def assert_end_of_stream_async(generator):
+    value = await anext(generator)
 
     assert_as_json(value, {"completed_stream": True})
