@@ -1,8 +1,8 @@
 import json
 from typing import Any
 
-from src.ame_json.models.path_data import PathData, PathDataMapper
-from src.ame_json.logging_utils import get_logger
+from ame_json.models.path_data import PathData, PathDataMapper
+from ame_json.logging_utils import get_logger
 
 logger = get_logger(__name__)
 

@@ -2,11 +2,11 @@ from collections.abc import Generator
 from typing import Any
 from pydantic import BaseModel
 
-from src.ame_json.models.field_helper import send_completed_stream
-from src.ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
-from src.ame_json.models.computation_utils import handle_computations
-from src.ame_json.models.utils import handle_model
-from src.ame_json.models.base_schema import (
+from ame_json.models.field_helper import send_completed_stream
+from ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
+from ame_json.models.computation_utils import handle_computations
+from ame_json.models.utils import handle_model
+from ame_json.models.base_schema import (
     BaseProgressiveJSONStreamer,
     BaseProgressiveSchema,
 )

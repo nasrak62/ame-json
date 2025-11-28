@@ -1,18 +1,18 @@
 from typing import Any, cast
 from pydantic import BaseModel
 
-from src.ame_json.models.placeholder_utils import (
+from ame_json.models.placeholder_utils import (
     handle_computation,
     handle_model_instance,
 )
 
-from src.ame_json.models.field_helper import (
+from ame_json.models.field_helper import (
     PRIMITIVES,
     is_computation,
     is_model,
 )
 
-from src.ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
+from ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
 
 
 class FieldHandler:

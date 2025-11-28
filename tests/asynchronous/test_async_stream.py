@@ -1,5 +1,5 @@
 import pytest
-from src.ame_json.models.async_computation import AsyncComputation
+from ame_json.models.async_computation import AsyncComputation
 from tests.asynchronous.utils import (
     BaseUserProfile,
     assert_as_json,

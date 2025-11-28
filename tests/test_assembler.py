@@ -1,5 +1,5 @@
-from src.ame_json.models.assembler.progressive_assembler import ProgressiveAssembler
-from src.ame_json.models.computation import Computation
+from ame_json.models.assembler.progressive_assembler import ProgressiveAssembler
+from ame_json.models.computation import Computation
 from tests.utils import (
     BaseUserProfile,
     UserWithAddress,

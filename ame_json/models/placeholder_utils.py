@@ -1,11 +1,11 @@
 from typing import Any
 from pydantic import BaseModel
 
-from src.ame_json.models.field_helper import (
+from ame_json.models.field_helper import (
     add_computation,
     add_placeholder,
 )
-from src.ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
+from ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
 
 
 def handle_computation(

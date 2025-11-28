@@ -2,8 +2,8 @@ import json
 import time
 
 
-from src.ame_json.models.computation import Computation
-from src.ame_json.models.progressive_schema import ProgressiveSchema
+from ame_json.models.computation import Computation
+from ame_json.models.progressive_schema import ProgressiveSchema
 from pydantic import BaseModel
 
 

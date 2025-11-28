@@ -2,12 +2,12 @@ from collections.abc import Iterable
 from typing import Any
 
 from pydantic import BaseModel
-from src.ame_json.models.field_helper import PRIMITIVES
-from src.ame_json.models.async_computation import AsyncComputation
-from src.ame_json.models.async_progressive_streamer import AsyncProgressiveJSONStreamer
-from src.ame_json.models.progressive_streamer import ProgressiveJSONStreamer
-from src.ame_json.models.base_schema import BaseProgressiveSchema
-from src.ame_json.models.async_base_schema import AsyncBaseProgressiveSchema
+from ame_json.models.field_helper import PRIMITIVES
+from ame_json.models.async_computation import AsyncComputation
+from ame_json.models.async_progressive_streamer import AsyncProgressiveJSONStreamer
+from ame_json.models.progressive_streamer import ProgressiveJSONStreamer
+from ame_json.models.base_schema import BaseProgressiveSchema
+from ame_json.models.async_base_schema import AsyncBaseProgressiveSchema
 
 
 class ProgressiveSchema(BaseProgressiveSchema):

@@ -4,9 +4,9 @@ from collections.abc import Callable
 import json
 from typing import Any, cast
 
-from src.ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
-from src.ame_json.models.computation import Computation
-from src.ame_json.models.async_computation import AsyncComputation
+from ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
+from ame_json.models.computation import Computation
+from ame_json.models.async_computation import AsyncComputation
 
 
 PRIMITIVES = (str, int, float, bool, complex, bytes, bytearray, type(None))

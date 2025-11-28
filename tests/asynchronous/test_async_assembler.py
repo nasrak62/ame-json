@@ -1,8 +1,8 @@
 import pytest
-from src.ame_json.models.assembler.async_progressive_assembler import (
+from ame_json.models.assembler.async_progressive_assembler import (
     AsyncProgressiveAssembler,
 )
-from src.ame_json.models.async_computation import AsyncComputation
+from ame_json.models.async_computation import AsyncComputation
 from tests.asynchronous.utils import (
     BaseUserProfile,
     UserWithAddress,

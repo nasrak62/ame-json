@@ -1,8 +1,8 @@
 import asyncio
 import json
 
-from src.ame_json.models.async_computation import AsyncComputation
-from src.ame_json.models.progressive_schema import AsyncProgressiveSchema
+from ame_json.models.async_computation import AsyncComputation
+from ame_json.models.progressive_schema import AsyncProgressiveSchema
 from pydantic import BaseModel
 
 

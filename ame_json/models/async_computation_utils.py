@@ -3,9 +3,9 @@ from typing import Any, Callable
 
 from pydantic import BaseModel
 
-from src.ame_json.models.utils import handle_model_iterable, prepare_data_str
+from ame_json.models.utils import handle_model_iterable, prepare_data_str
 
-from src.ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
+from ame_json.models.progressive_streamer_context import ProgressiveStreamerContext
 
 
 def handle_list_generator(

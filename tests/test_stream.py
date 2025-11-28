@@ -1,4 +1,4 @@
-from src.ame_json.models.computation import Computation
+from ame_json.models.computation import Computation
 from tests.utils import (
     BaseUserProfile,
     assert_as_json,
